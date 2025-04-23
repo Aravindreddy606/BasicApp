@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\navigation"
+    "\\assets",
+    "\\navigation",
+    "\\screens"
   ],
-  "SelectedNode": "\\tsconfig.json",
+  "SelectedNode": "\\screens\\HomeScreen.tsx",
   "PreviewInSolutionExplorer": false
 }

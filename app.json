@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "NewApp",
-    "slug": "NewApp",
+    "name": "Health Calculator and Exercises",
+    "slug": "Health Calculator and Exercises",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -6,11 +6,17 @@ import LoginScreen from "../screens/LoginScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import HomeScreen from "../screens/HomeScreen";
 import { Ionicons } from '@expo/vector-icons';
+import BMICalculator from "../screens/BMICalculator";
+import BodyFatCalculator from "../screens/BodyFatCalculator";
+import MeditationBreathing from "../screens/MeditationBreathing";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function TabNavigator() {
+function TabNavigator({ route }) {
+
+    const { name } = route.params
+
     return (
         <Tab.Navigator
             id={null}
@@ -26,13 +32,13 @@ function TabNavigator() {
 
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
-                tabBarActiveTintColor: 'rgb(0, 149, 182)',
+                tabBarActiveTintColor: '#6200ee',
                 tabBarInactiveTintColor: 'gray',
                 headerShown: false,
             })}
         >
-            <Tab.Screen name="HomeScreen" component={HomeScreen} />
-            <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
+            <Tab.Screen name="HomeScreen" component={HomeScreen} initialParams={{ name }} options={{ title: 'Home' }} />
+            <Tab.Screen name="ProfileScreen" component={ProfileScreen} initialParams={{ name }} options={{ title: 'Profile' }} />
         </Tab.Navigator>
     );
 }
@@ -63,6 +69,23 @@ export default function AppNav() {
                     component={TabNavigator}
                     options={{ headerShown: false }}
                 />
+                <Stack.Screen
+                    name="BMICalculator"
+                    component={BMICalculator}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="BodyFatCalculator"
+                    component={BodyFatCalculator}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="MeditationBreathing"
+                    component={MeditationBreathing}
+                    options={{ headerShown: false }}
+                />
+
+                
             </Stack.Navigator>
         </NavigationContainer>
     );
