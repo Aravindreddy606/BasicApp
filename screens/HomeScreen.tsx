@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect, useCallback } from 'react';
 import {
     View,
     Text,
@@ -11,9 +11,11 @@ import {
     StatusBar,
     Dimensions,
     Animated,
-    Alert
+    Alert,
+    BackHandler
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useFocusEffect } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
 
@@ -108,7 +110,31 @@ const HomeScreen = ({ navigation, route }) => {
         }
     };
 
+    useFocusEffect(
+        useCallback(() => {
+            const onBackPress = () => {
+                Alert.alert(
+                    'Confirmation',
+                    'Are you sure you want to exit the app?',
+                    [
+                        {
+                            text: 'No',
+                            style: 'cancel',
+                        },
+                        {
+                            text: 'Yes',
+                            onPress: () => BackHandler.exitApp(),
+                        },
+                    ]
+                );
+                return true;
+            };
 
+            BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+            return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+        }, [])
+    );
 
     //const healthStats = [
     //    { label: 'Steps', value: '6,240', icon: 'shoe-print', color: '#42A5F5' },
